@@ -11,6 +11,13 @@ const courses = [
 ];
 
 
+app.use((req, res, next) => {
+  const timestamp = new Date().toISOString();
+  console.log(`[${timestamp}] ${req.method} ${req.originalUrl}`);
+  next();
+});
+
+
 app.get('/hello', (req, res) => {
   res.type('text/plain');
   res.send("Hello from Azra's server");
