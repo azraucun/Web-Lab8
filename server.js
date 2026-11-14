@@ -52,6 +52,15 @@ app.get('/api/admin', (req, res) => {
   res.status(403).json({ error: 'Forbidden' });
 });
 
+
+app.use((req, res) => { //eğer hiç bir route eşleşmezse bu middleware çalışır
+  if (req.path.startsWith('/api')) {
+    res.status(404).json({ error: 'Not found' });
+  } else {
+    res.status(404).type('text/plain').send(`Page not found: ${req.path}`);
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });
