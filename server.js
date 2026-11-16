@@ -10,10 +10,17 @@ const courses = [
   { id: 4, title: 'Software Engineering', credits: 4 },
 ];
 
+let requestCount = 0;
+
 
 app.use((req, res, next) => {
   const timestamp = new Date().toISOString();
   console.log(`[${timestamp}] ${req.method} ${req.originalUrl}`);
+  next();
+});
+
+app.use((req, res, next) => {
+  requestCount += 1;
   next();
 });
 
@@ -59,8 +66,11 @@ app.get('/api/admin', (req, res) => {
   res.status(403).json({ error: 'Forbidden' });
 });
 
+app.get('/api/stats', (req, res) => {
+  res.json({ requestsServed: requestCount });
+});
 
-app.use((req, res) => { //eğer hiç bir route eşleşmezse bu middleware çalışır
+app.use((req, res) => { // eğer hiç bir route eşleşmezse bu middleware çalışır
   if (req.path.startsWith('/api')) {
     res.status(404).json({ error: 'Not found' });
   } else {
