@@ -1,7 +1,9 @@
 import express from 'express';
+import path from 'node:path';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const publicDir = path.join(import.meta.dirname, 'public');
 
 const courses = [
   { id: 1, title: 'Introduction to Web Programming', credits: 6 },
@@ -24,6 +26,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(express.static(publicDir));
 
 app.get('/hello', (req, res) => {
   res.type('text/plain');

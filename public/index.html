@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Development Programme — Information Server</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Web Development Programme</h1>
+    <p class="tagline">A made-up study programme, served by a small Express server.</p>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h2>About the programme</h2>
+      <p>
+        The Web Development Programme is a fictional two-year course that teaches students
+        how the web works from both sides: the browser and the server.
+      </p>
+      <p>
+        Students start with HTML, CSS and JavaScript, move on to React, and then build their
+        own back-ends with Node.js and Express. This page is served by such a back-end.
+      </p>
+    </section>
+
+    <section class="api">
+      <h2>Try the API</h2>
+      <p>Each button sends a request to the server with <code>fetch()</code> and shows the response below.</p>
+
+      <div class="buttons">
+        <button type="button" data-method="GET" data-url="/api/courses">GET /api/courses</button>
+        <button type="button" data-method="GET" data-url="/api/status">GET /api/status</button>
+        <button type="button" data-method="GET" data-url="/api/headers">GET /api/headers</button>
+        <button type="button" data-method="POST" data-url="/api/subscribe">POST /api/subscribe</button>
+        <button type="button" data-method="GET" data-url="/api/admin">GET /api/admin</button>
+        <button type="button" data-method="GET" data-url="/api/stats">GET /api/stats</button>
+        <button type="button" data-method="GET" data-url="/api/does-not-exist">GET /api/does-not-exist</button>
+      </div>
+
+      <div class="result">
+        <p>Status: <span id="status">—</span></p>
+        <pre id="output">Click a button to call the API.</pre>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Azra Ucun</p>
+  </footer>
+</body>
+</html>
