@@ -27,6 +27,22 @@ The port comes from `process.env.PORT` (fallback `3000`), e.g. `PORT=4000 npm st
  ├─ .gitignore       node_modules/, .env
  └─ README.md
 ```
+
+## Routes
+
+| Method and path | Response |
+| --- | --- |
+| `GET /` | `public/index.html` |
+| `GET /hello` | `200`, plain text |
+| `GET /robots.txt` | `200`, `text/plain` |
+| `GET /old-page` | `302` redirect to `/hello` |
+| `GET /api/courses` | `200`, JSON array of courses |
+| `GET /api/status` | `200`, JSON with real process values |
+| `GET /api/headers` | `200`, JSON with `User-Agent` and `Accept` |
+| `POST /api/subscribe` | `201`, `{ "subscribed": true }` |
+| `GET /api/admin` | `403`, `{ "error": "Forbidden" }` |
+| `GET /api/stats` | `200`, `{ "requestsServed": n }` |
+| anything else | `404`, JSON for `/api`, text otherwise |
  
 ## Middleware order and counting
  
@@ -150,4 +166,5 @@ Page not found: /does-not-exist
 - `npm install` went to a parent folder because I had not run `npm init` yet.
 - `npm init` set `"type": "commonjs"`, which I changed to `"module"`.
 - `/api/stats` returned 404 because the route was missing; it showed me the fallback works.
+ 
  
